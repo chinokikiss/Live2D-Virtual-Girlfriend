@@ -1,0 +1,29 @@
+# 角色配置文件
+name = "拉菲"
+win_width = 800
+win_height = 1600
+live2d_model = "laffey Ⅱ\\Laffey Ⅱ.model3.json"
+system_prompt = "人设.txt"
+exp = "exp.json"
+max_rms_scale = 4500
+ttf_rgb = [135, 206, 235]
+subtitle_speed = 0.18
+ref_audio = "日配.mp3"
+prompt_text = "私がこの体じゃなくなってもまだ、見てくれる。"
+prompt_lang = "ja"
+text_lang = "ja"
+speed_factor = 1.0
+wake_word = ["在吗"]
+end_word = ["再见"]
+watermark = "Paramtanchuang"
+rvc_model = "guanguanV1.pth"
+
+["Exp"]
+mixanimator_wait_range = [5, 10] # MixAnimator播放等待时间范围 赋值'none'字符串即关闭MixAnimator
+mixanimator_weight = [1, 1, 1, 1, 0] # 各随机动画的播放权重
+mixanimator_max_sample = 2 # 动画最大组合数量
+
+["Body"]
+mixanimator_wait_range = [0, 0] # MixAnimator播放等待时间范围 赋值'none'字符串即关闭MixAnimator
+mixanimator_weight = [4, 4, 4, 4, 0, 0, 0, 0] # 各随机动画的播放权重
+mixanimator_max_sample = 3 # 动画最大组合数量

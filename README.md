@@ -1,6 +1,19 @@
-# Live2D Virtual Girlfriend
+<div align="center">
 
-基于Live2D驱动的虚拟女友项目，提供实时对话、触摸交互、情绪系统等完整的虚拟伴侣体验。
+# 💕 Live2D Virtual Girlfriend
+
+<img src="temp\avatar.png" alt="Virtual Girlfriend Avatar" width="200" height="200" style="border-radius: 50%; margin: 20px 0;"/>
+*基于Live2D驱动的虚拟女友项目*
+
+**提供实时对话、触摸交互、情绪系统等完整的虚拟伴侣体验**
+
+[![GitHub Stars](https://img.shields.io/github/stars/chinokikiss/live2d-girlfriend?style=flat-square)](https://github.com/chinokikiss/live2d-girlfriend)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Python Version](https://img.shields.io/badge/python-3.8--3.11-blue.svg?style=flat-square)](https://python.org)
+
+---
+
+</div>
 
 ## 功能特性
 
@@ -23,9 +36,10 @@
 
 ## 环境要求
 
-- Python < 3.12
-- Anaconda
-- 支持CUDA的显卡（可选CPU运行）
+- **Python** < 3.12
+- **Anaconda** 包管理器
+- **Visual C++** 14 运行库
+- **CUDA显卡** 支持（可选CPU运行）
 
 ## 安装步骤
 

@@ -27,14 +27,15 @@
 - ✅ **随机动画播放**
 - ✅ **声纹识别**
 - ✅ **唤醒与睡眠机制**
-- ✅ **长期记忆**
+- 🔄 **长期记忆**
 - ✅ **屏幕内容识别**
 - ✅ **MCP调用**
 - ✅ **多智能体**
-- ❌ **点歌功能**
-- ❌ **WebLive2D**
-- ❌ **VTuber直播**
-- ❌ **UI界面开发**
+- 🔄 **主动对话**
+- 🔄 **点歌功能**
+- 🔄 **WebLive2D**
+- 🔄 **VTuber直播**
+- 🔄 **UI界面开发**
 - ❌ **整合包**
 - ❌ **记忆可视化管理**
 - ❌ **意图识别**
@@ -186,6 +187,7 @@ python download.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

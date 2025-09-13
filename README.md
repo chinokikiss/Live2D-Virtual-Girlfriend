@@ -5,6 +5,7 @@
 <img src="temp\avatar.png" alt="Virtual Girlfriend Avatar" width="200" height="200" style="border-radius: 50%; margin: 20px 0;"/>
 
 *基于Live2D驱动的虚拟女友项目*
+
 **提供实时对话、触摸交互、情绪系统等完整的虚拟伴侣体验**
 
 [![GitHub Stars](https://img.shields.io/github/stars/chinokikiss/Live2D-Virtual-Girlfriend?style=flat-square)](https://github.com/chinokikiss/Live2D-Virtual-Girlfriend)
@@ -159,4 +160,5 @@ python -m spacy download zh_core_web_sm
 - 开发UI界面
 - 制作一键懒人包
 - 扩展VTuber应用场景
+
 

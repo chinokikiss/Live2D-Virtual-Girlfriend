@@ -174,8 +174,6 @@ python download.py
 
 感谢所有为这个项目做出贡献的开发者！
 
-[![Contributors](https://contrib.rocks/image?repo=chinokikiss/Live2D-Virtual-Girlfriend)](https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors)
-
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>

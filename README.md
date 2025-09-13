@@ -41,7 +41,7 @@
 
 - **Python** < 3.12
 - **Anaconda** 包管理器
-- **CUDA显卡** 支持（可选CPU运行）
+- **CUDA** 支持
 
 ## 安装步骤
 
@@ -175,6 +175,7 @@ python download.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

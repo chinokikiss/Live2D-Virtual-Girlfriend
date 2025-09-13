@@ -21,9 +21,9 @@
 ## 功能特性
 - ✅ **实时语音对话交互**
 - ✅ **Live2D触摸交互**
-- ✅ **实时字幕显示系统**
-- ✅ **情绪识别与表达**
-- ✅ **动态表情系统**
+- ✅ **实时字幕显示**
+- ✅ **情绪表达**
+- ✅ **表情播放**
 - ✅ **随机动画播放**
 - ✅ **声纹识别**
 - ✅ **唤醒与睡眠机制**
@@ -185,6 +185,7 @@ python download.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

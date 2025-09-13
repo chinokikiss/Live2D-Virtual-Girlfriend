@@ -9,7 +9,7 @@
 **提供实时对话、触摸交互、情绪系统等完整的虚拟伴侣体验**
 
 [![GitHub Stars](https://img.shields.io/github/stars/chinokikiss/Live2D-Virtual-Girlfriend?style=flat-square)](https://github.com/chinokikiss/Live2D-Virtual-Girlfriend)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg?style=flat-square)](LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.10--3.11-blue.svg?style=flat-square)](https://python.org)
 
 ---
@@ -53,9 +53,8 @@
 
 **配置conda镜像源后执行：**
 ```bash
-conda install torch torchvision torchaudio
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 ```
-*注意：以上命令安装CPU版本，如需GPU版本请上网查询教程。*
 
 ### 3. 安装依赖
 ```bash
@@ -176,6 +175,7 @@ python download.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

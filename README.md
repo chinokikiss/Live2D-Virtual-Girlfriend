@@ -39,8 +39,6 @@
 - ❌ **记忆可视化管理**
 - ❌ **意图识别**
 
-<div align="center">
-
 **开发进度：12/19 (63.2%)**
 
 </div>
@@ -188,6 +186,7 @@ python download.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

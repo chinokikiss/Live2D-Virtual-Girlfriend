@@ -40,8 +40,6 @@
 - ❌ **记忆可视化管理**
 - ❌ **意图识别**
 
-**开发进度：12/19 (63.2%)**
-
 </div>
 
 ## 性能表现
@@ -178,7 +176,7 @@ python download.py
 - `end_word`：休眠词列表
 
 ## 我的感想
-占位符
+*暂时没感想...*
 
 ## 贡献者
 
@@ -187,6 +185,7 @@ python download.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

@@ -35,8 +35,7 @@
 |------|------|
 | **显存需求** | 3-4GB（包含GPTSoVits） |
 | **测试环境** | i5 13代 + RTX 3050 笔记本 |
-| **首次响应** | 1-2秒 |
-| **API响应** | 0.5-0.7秒 |
+| **首次响应** | 1-2秒(豆包1.6 flash 0.5-0.7秒) |
 
 ## 环境要求
 
@@ -49,21 +48,21 @@
 
 ### 1. 环境准备
 
-安装Anaconda并创建Python虚拟环境。建议使用Python版本低于3.12。
+**安装Anaconda并创建Python虚拟环境。建议使用Python版本低于3.12。**
 
 ### 2. 安装PyTorch
 
-配置conda镜像源后执行：
+**配置conda镜像源后执行：**
 ```bash
 conda install torch torchvision torchaudio
 ```
-注意：以上命令安装CPU版本，如需GPU版本请上网查询教程。
+*注意：以上命令安装CPU版本，如需GPU版本请上网查询教程。*
 
 ### 3. 安装依赖
 ```bash
 pip install -r requirements.txt
 ```
-建议配置pip镜像源以提高下载速度。
+*建议配置pip镜像源以提高下载速度。*
 
 ### 4. 下载NLP模型
 ```bash
@@ -74,6 +73,7 @@ python -m spacy download zh_core_web_sm
 ```bash
 python download.py
 ```
+*建议开启VPN下载*
 
 ### 6. 配置文件设置
 
@@ -169,6 +169,7 @@ python download.py
 - 开发UI界面
 - 制作一键懒人包
 - 扩展VTuber应用场景
+
 
 
 

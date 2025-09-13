@@ -2,7 +2,7 @@ noise
 numpy
 pyaudio
 soundfile
-webrtcvad
+webrtcvad-wheels
 speechbrain
 sentence-transformers
 networkx

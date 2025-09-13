@@ -1,0 +1,43 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "identify_role",
+            "description": "识别屏幕中的动漫角色，并获取动漫角色的来源作品。适用场景：当用户分享动漫截图、插画或cosplay照片时，可以帮助识别其中的角色身份，提供角色名称、所属动漫/游戏作品、角色背景等信息。对于动漫爱好者寻找作品来源、角色考据、或想了解某个角色详细信息时特别有用。",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "sing_song",
+            "description": "根据关键词演唱匹配的歌曲。调用时需要等待歌曲合成。适用场景：当用户想要听特定歌曲、指定歌手的歌曲，或想要听歌放松、体验AI歌声。注意：歌曲生成需要一定处理时间，请耐心等待。",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "keyword": {
+                        "type": "string",
+                        "description": "歌名或歌名+歌手的关键词，系统会自动匹配最接近的歌曲。"
+                    }
+                },
+                "required": ["keyword"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "universal_tool",
+            "description": "万能工具，功能包括：",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        }
+    }
+]

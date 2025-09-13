@@ -5,8 +5,8 @@
 ## 功能特性
 
 - 实时语音对话交互
-- 触摸交互
-- 实时字幕显示
+- Live2D触摸交互
+- 实时字幕显示系统
 - 情绪识别与表达
 - 动态表情系统
 - 随机动画播放
@@ -17,22 +17,21 @@
 
 ## 性能表现
 
-- 显存需求：**3-4GB**（包含GPTSoVits）
-- 测试环境：**i5 13代 RTX 3050**笔记本
-- 首次响应时间：**1-2秒**（大模型API响应时间：0.5-0.7秒）
+- 显存需求：3-4GB（包含GPTSoVits）
+- 测试环境：i5 13代 RTX 3050笔记本
+- 首次响应时间：1-2秒（大模型API响应时间：0.5-0.7秒）
 
 ## 环境要求
 
 - Python < 3.12
 - Anaconda
 - 支持CUDA的显卡（可选CPU运行）
-- 已经成功部署GPTSovits
 
 ## 安装步骤
 
 ### 1. 环境准备
 
-安装Anaconda并创建Python虚拟环境。建议使用Python版本低于**3.12**。
+安装Anaconda并创建Python虚拟环境。建议使用Python版本低于3.12。
 
 ### 2. 安装PyTorch
 
@@ -48,17 +47,11 @@ pip install -r requirements.txt
 ```
 建议配置pip镜像源以提高下载速度。
 
-### 4. 下载NLP模型
+### 4. 下载语言模型
 ```bash
 python -m spacy download zh_core_web_sm
 ```
-
-### 5. 下载向量模型（建议开VPN）
-```bash
-python download.py
-```
-
-### 6. 配置文件设置
+### 5. 配置文件设置
 
 修改`config.toml`文件中的以下配置：
 
@@ -74,15 +67,11 @@ python download.py
 #### 设备配置
 根据硬件情况修改`device`字段，按照配置文件中的注释说明进行设置。
 
-### 7. 启动程序（在此之前要运行GPTSovits apiv2服务）
+### 6. 启动程序
 
 运行`run.bat`或执行`python main.py`
 
 首次启动将自动下载必要的模型文件，请耐心等待。
-
-## 使用说明
-
-直接对话就行了；想要触摸交互就**双击**部位；不想对话了就说出**休眠词**，默认是`再见`；想要唤醒就说出**唤醒词**，默认是`在吗`；想要屏幕识别就说出**屏幕识别口令**，具体什么口令看配置文件。
 
 ## 角色卡制作
 
@@ -133,8 +122,7 @@ python download.py
     "subtitle_speed": 0.13,
     "speed_factor": 1.0,
     "wake_word": ["在吗"],
-    "end_word": ["再见"],
-    "watermark": "Param14"
+    "end_word": ["再见"]
 }
 ```
 #### 配置参数说明
@@ -151,7 +139,6 @@ python download.py
 - `speed_factor`：语音生成语速
 - `wake_word`：唤醒词列表
 - `end_word`：休眠词列表
-- `watermark`：水印id
 
 ## 开发计划
 

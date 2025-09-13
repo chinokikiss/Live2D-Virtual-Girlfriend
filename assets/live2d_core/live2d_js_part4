@@ -1,0 +1,3 @@
+;  // 模型纵坐标,更换模型后一般需要调整
+_i.rotation=Math.PI;_i.skew.x=Math.PI;// 无需修改
+_i.scale.set(.

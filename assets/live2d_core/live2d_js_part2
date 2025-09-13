@@ -1,0 +1,3 @@
+",// 模型路径,每次更换模型都需要调整
+_i=await td.from(xb);yb.stage.addChild(_i);// 无需修改
+_i.x=

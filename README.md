@@ -48,7 +48,7 @@
 |------|------|
 | **显存需求** | 3-4GB（包含GPTSoVits） |
 | **测试环境** | i5 13代 + RTX 3050 笔记本 |
-| **首次响应** | 1-2秒(豆包1.6 flash 0.5-0.7秒) |
+| **首次响应** | 1-2秒 (豆包1.6 flash 0.5-0.7秒) |
 
 ## 环境要求
 
@@ -96,15 +96,21 @@ python download.py
 - `api_key`：API密钥
 - `chat_model`：使用的聊天模型
 
-#### 语音配置
-录制个人语音样本，将音频文件路径填入`your_voice`字段。
+#### 用户角色配置
+在`user_name`字段填入自己要扮演的角色名，这将影响对话中的身份设定。
 
-#### 设备配置
-根据硬件情况修改`device`字段，按照配置文件中的注释说明进行设置。
+#### 辅助模型配置
+在`["auxiliary"]`中填入低价的大模型API信息，用于辅助生成内容：
+- `base_url`：辅助API服务地址
+- `api_key`：辅助API密钥
+- `chat_model`：辅助聊天模型
+
+#### 声纹识别配置
+录制个人语音样本，将音频文件路径填入`your_voice`字段。
 
 ### 7. 启动程序
 
-运行`run.bat`或执行`python main.py`
+运行`debug.bat`或执行`python main.py`
 
 首次启动将自动下载必要的模型文件，请耐心等待。
 
@@ -185,6 +191,7 @@ python download.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

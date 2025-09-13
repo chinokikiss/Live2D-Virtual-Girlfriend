@@ -16,18 +16,34 @@
 
 </div>
 
-## 功能特性
+</div>
 
-- **实时语音对话交互**
-- **Live2D触摸交互**
-- **实时字幕显示系统**
-- **情绪识别与表达**
-- **动态表情系统**
-- **随机动画播放**
-- **说话人身份确认**
-- **唤醒与睡眠机制**
-- **长期记忆存储**
-- **屏幕内容识别**
+## 功能特性
+- ✅ **实时语音对话交互**
+- ✅ **Live2D触摸交互**
+- ✅ **实时字幕显示系统**
+- ✅ **情绪识别与表达**
+- ✅ **动态表情系统**
+- ✅ **随机动画播放**
+- ✅ **声纹识别**
+- ✅ **唤醒与睡眠机制**
+- ✅ **长期记忆**
+- ✅ **屏幕内容识别**
+- ✅ **MCP调用**
+- ✅ **多智能体**
+- ❌ **点歌功能**
+- ❌ **WebLive2D**
+- ❌ **VTuber直播**
+- ❌ **UI界面开发**
+- ❌ **整合包**
+- ❌ **记忆可视化管理**
+- ❌ **意图识别**
+
+<div align="center">
+
+**开发进度：12/19 (63.2%)**
+
+</div>
 
 ## 性能表现
 
@@ -47,7 +63,7 @@
 
 ### 1. 环境准备
 
-**安装Anaconda并创建Python虚拟环境。建议使用Python版本低于3.12。**
+**安装Anaconda并创建Python虚拟环境。**
 
 ### 2. 安装PyTorch
 
@@ -162,11 +178,8 @@ python download.py
 - `wake_word`：唤醒词列表
 - `end_word`：休眠词列表
 
-## 开发计划
-
-- 开发UI界面
-- 制作一键懒人包
-- 扩展VTuber应用场景
+## 我的感想
+占位符
 
 ## 贡献者
 
@@ -175,6 +188,7 @@ python download.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

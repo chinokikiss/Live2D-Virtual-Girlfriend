@@ -10,7 +10,7 @@
 
 [![GitHub Stars](https://img.shields.io/github/stars/chinokikiss/Live2D-Virtual-Girlfriend?style=flat-square)](https://github.com/chinokikiss/Live2D-Virtual-Girlfriend)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](LICENSE)
-[![Python Version](https://img.shields.io/badge/python-3.8--3.11-blue.svg?style=flat-square)](https://python.org)
+[![Python Version](https://img.shields.io/badge/python-3.10--3.11-blue.svg?style=flat-square)](https://python.org)
 
 ---
 
@@ -18,22 +18,25 @@
 
 ## 功能特性
 
-- 实时语音对话交互
-- Live2D触摸交互
-- 实时字幕显示系统
-- 情绪识别与表达
-- 动态表情系统
-- 随机动画播放
-- 说话人身份确认
-- 唤醒与睡眠机制
-- 长期记忆存储
-- 屏幕内容识别
+- **实时语音对话交互**
+- **Live2D触摸交互**
+- **实时字幕显示系统**
+- **情绪识别与表达**
+- **动态表情系统**
+- **随机动画播放**
+- **说话人身份确认**
+- **唤醒与睡眠机制**
+- **长期记忆存储**
+- **屏幕内容识别**
 
 ## 性能表现
 
-- 显存需求：3-4GB（包含GPTSoVits）
-- 测试环境：i5 13代 RTX 3050笔记本
-- 首次响应时间：1-2秒（大模型API响应时间：0.5-0.7秒）
+| 项目 | 规格 |
+|------|------|
+| **显存需求** | 3-4GB（包含GPTSoVits） |
+| **测试环境** | i5 13代 + RTX 3050 笔记本 |
+| **首次响应** | 1-2秒 |
+| **API响应** | 0.5-0.7秒 |
 
 ## 环境要求
 
@@ -62,11 +65,17 @@ pip install -r requirements.txt
 ```
 建议配置pip镜像源以提高下载速度。
 
-### 4. 下载语言模型
+### 4. 下载NLP模型
 ```bash
 python -m spacy download zh_core_web_sm
 ```
-### 5. 配置文件设置
+
+### 5. 下载embedding模型
+```bash
+python download.py
+```
+
+### 6. 配置文件设置
 
 修改`config.toml`文件中的以下配置：
 
@@ -82,7 +91,7 @@ python -m spacy download zh_core_web_sm
 #### 设备配置
 根据硬件情况修改`device`字段，按照配置文件中的注释说明进行设置。
 
-### 6. 启动程序
+### 7. 启动程序
 
 运行`run.bat`或执行`python main.py`
 
@@ -160,5 +169,6 @@ python -m spacy download zh_core_web_sm
 - 开发UI界面
 - 制作一键懒人包
 - 扩展VTuber应用场景
+
 
 

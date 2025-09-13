@@ -40,7 +40,7 @@ top_p = 0.9
 max_tokens = 16384
 max_pixels = 50176
 
-# 辅助型大模型api 选填 默认用内置免费api
+# 辅助型大模型api 必填
 ["auxiliary"]
 base_url = ''
 api_key = ''
@@ -62,5 +62,6 @@ headless = false # 游览器无头模式（即Agent调用游览器时，是否�
 has_proxy = false # 电脑是否开启了代理（vpn）
 
 agent_event = true
+
 
 port = 8080 # 端口（如没有占用端口，则不要改动）

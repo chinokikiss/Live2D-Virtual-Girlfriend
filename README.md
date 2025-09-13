@@ -62,7 +62,7 @@ conda install torch torchvision torchaudio
 pip install -r requirements.txt
 
 # 安装3.10版本的wenrtcvad
-pip install https://pypi.tuna.tsinghua.edu.cn/packages/45/2a/b1035a8361fbc89b5cc80921c7ec9ac9036ce479aa38e5e5b608524a4927/webrtcvad_wheels-2.0.14-pp310-pypy310_pp73-win_amd64.whl
+pip install https://pypi.tuna.tsinghua.edu.cn/packages/0c/1b/eb751c789feef54d0b704465662b97f68a7d69806a85a3926c3f42928264/webrtcvad_wheels-2.0.14-cp310-cp310-win_amd64.whl
 ```
 *建议配置pip镜像源以提高下载速度。*
 
@@ -179,4 +179,5 @@ python download.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 

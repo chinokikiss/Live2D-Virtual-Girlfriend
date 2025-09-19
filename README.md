@@ -24,6 +24,7 @@
 - ✅ **实时字幕显示**
 - ✅ **情绪表达**
 - ✅ **表情播放**
+- ✅ **语音打断**
 - ✅ **随机动画播放**
 - ✅ **声纹识别**
 - ✅ **唤醒与睡眠机制**
@@ -36,6 +37,7 @@
 - 🔄 **WebLive2D**
 - 🔄 **VTuber直播**
 - 🔄 **UI界面开发**
+- ❌ **动作播放**
 - ❌ **游戏解说**
 - ❌ **自主玩游戏**
 - ❌ **整合包**
@@ -184,6 +186,7 @@ python main.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

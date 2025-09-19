@@ -48,7 +48,7 @@ chat_model = ''
 
 ["modelscope"]
 base_url = 'https://api-inference.modelscope.cn/v1/'
-api_key = ''
+api_key = '' # 填入魔搭社区的访问令牌，即可体验多智能体功能
 
 # www.bing.com的cookie，请自行替换
 www_bing_cookie = ""
@@ -65,3 +65,4 @@ agent_event = true
 
 
 port = 8080 # 端口（如没有占用端口，则不要改动）
+

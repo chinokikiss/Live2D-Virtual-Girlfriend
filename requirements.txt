@@ -11,7 +11,6 @@ spacy
 requests
 PyQt5
 toml
-modelscope
 live2d-py
 sounddevice
 rich
@@ -25,3 +24,9 @@ uvicorn
 librosa
 pydub
 flask
+mcp
+addict
+pyautogui
+datasets==2.21.0
+simplejson
+sortedcontainers

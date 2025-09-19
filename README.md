@@ -64,13 +64,13 @@
 
 ### 1. 环境准备
 
-**安装Anaconda并创建Python虚拟环境**
+**创建虚拟环境**
 ```bash
 conda create -n live2d_chat python=3.11
 conda activate live2d_chat
 ```
 
-**安装所有依赖**
+**安装依赖**
 ```bash
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia # 建议配置conda镜像源
 pip install -r requirements.txt # 建议配置pip镜像源
@@ -186,6 +186,7 @@ python main.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

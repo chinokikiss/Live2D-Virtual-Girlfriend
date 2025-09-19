@@ -8,7 +8,6 @@ context_length = 10000 # 上下文长度
 save_memory_steps = 2 # 几条对话进行一次记忆保存
 memory_top_k = 5 # 返回记忆的最大长度
 memory_similarity_threshold = 0.1 # 记忆相似度阈值
-conversations_length = 1000
 
 # 小牛翻译 选填 默认用内置免费api
 niutrans_app_id = ''
@@ -65,4 +64,5 @@ agent_event = true
 
 
 port = 8080 # 端口（如没有占用端口，则不要改动）
+
 

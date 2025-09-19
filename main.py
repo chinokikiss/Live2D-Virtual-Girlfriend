@@ -225,7 +225,7 @@ class Agent:
                 json.dump(temp_data, f, ensure_ascii=False)
                 temp_file = f.name
 
-            os.system(f'start /min cmd /k python {py} "{temp_file}"')
+            os.system(f'start /min cmd /c python {py} "{temp_file}"')
 
             while True:
                 if agent_id in Global.Agent_return:
@@ -457,5 +457,6 @@ if __name__ == '__main__':
     
     Thread(target=speech_recognition, daemon=True).start()
     Thread(target=api.run, daemon=True).start()
+
 
     sys.exit(app.exec())

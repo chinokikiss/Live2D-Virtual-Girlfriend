@@ -9,17 +9,16 @@ from config import Global
 from openai import OpenAI
 from sentence_transformers import SentenceTransformer
 import spacy
-import requests
 
 class RAGMemory:
     def __init__(self):
         self.graph = nx.MultiDiGraph()
-        self.conversations = []
         self.entity_embeddings = {}
         self.entity_alias = {}
         self.temporalmemories = {}
         self.user_name = Global.user_name
         self.assistant_name = Global.character["name"]
+        self.time_extractor = TimeExtractor(self)
 
         if Global.auxiliary['base_url'] and Global.auxiliary['api_key']:
             self.client = OpenAI(
@@ -37,7 +36,7 @@ class RAGMemory:
             self.load_from_file(self.memory_path)
     
     def init_models(self):
-        self.embedding_model = SentenceTransformer("BAAI/bge-small-zh-v1.5", local_files_only=True, device=Global.device)
+        self.embedding_model = SentenceTransformer("BAAI/bge-small-zh-v1.5", local_files_only=True, device='cuda')
         self.nlp = spacy.load("zh_core_web_sm")
     
     def find_relevant(self, text_embedding, top_k=10, similarity_threshold=0.5):
@@ -96,11 +95,37 @@ class RAGMemory:
 
         return relevant_entities, relevant_relationships
 
-    def update_temporalmemories(self, text):
-        now = datetime.now()
+    def update_temporalmemories(self, text, now=None):
+        if not now:
+            now = datetime.now()
         _y = list(self.temporalmemories.items())[-1] if self.temporalmemories.items() else ['-1', {'branch':{}}]
         _m = list(_y[1]['branch'].items())[-1] if _y[1]['branch'] else ['-1', {'branch':{}}]
         _d = list(_m[1]['branch'].items())[-1] if _m[1]['branch'] else ['-1', {'branch':{}}]
+
+        if now.year not in self.temporalmemories:
+            self.temporalmemories[now.year] = {'branch':{}}
+        if now.month not in self.temporalmemories[now.year]['branch']:
+            self.temporalmemories[now.year]['branch'][now.month] = {'branch':{}}
+        if now.day not in self.temporalmemories[now.year]['branch'][now.month]['branch']:
+            self.temporalmemories[now.year]['branch'][now.month]['branch'][now.day] = {'branch':{}}
+
+        if str(now.day) != str(_d[0]):
+            if _d[1]['branch']:
+                prompt = f'{_d[1]["branch"]}\n以上是今天发生的事，按时间线（上午、下午、晚上）进行概括性总结，要求输出的内容高质量、不多余'
+                summary = self.call_llm(prompt)
+                _d[1]['summary'] = summary
+                _d[1]['embedding'] = self.embedding_model.encode(summary)
+                _d[1]['branch'] = {}
+
+        if str(now.month) != str(_m[0]):
+            if _m[1]['branch']:
+                prompt = ''
+                for k,v in _m[1]['branch'].items():
+                    prompt += f'{k}日总结: {v["summary"]}\n'
+                prompt += '以上是这个月的几天总结，请对这个月进行概括性总结，要求输出的内容高质量、不多余'
+                summary = self.call_llm(prompt)
+                _m[1]['summary'] = summary
+                _m[1]['embedding'] = self.embedding_model.encode(summary)
         
         if str(now.year) != str(_y[0]):
             if _y[1]['branch']:
@@ -111,35 +136,82 @@ class RAGMemory:
                 summary = self.call_llm(prompt)
                 _y[1]['summary'] = summary
                 _y[1]['embedding'] = self.embedding_model.encode(summary)
-
-            if now.year not in self.temporalmemories:
-                self.temporalmemories[now.year] = {'branch':{}}
-        
-        if str(now.month) != str(_m[0]):
-            if _m[1]['branch']:
-                prompt = ''
-                for k,v in _m[1]['branch'].items():
-                    prompt += f'{k}日总结: {v["summary"]}\n'
-                prompt += '以上是这个月的几天总结，请对这个月进行概括性总结，要求输出的内容高质量、不多余'
-                summary = self.call_llm(prompt)
-                _m[1]['summary'] = summary
-                _m[1]['embedding'] = self.embedding_model.encode(summary)
-
-            if now.month not in self.temporalmemories[now.year]['branch']:
-                self.temporalmemories[now.year]['branch'][now.month] = {'branch':{}}
-        
-        if str(now.day) != str(_d[0]):
-            if _d[1]['branch']:
-                prompt = f'{_d[1]["branch"]}\n以上是今天发生的事，按时间线（上午、下午、晚上）进行概括性总结，要求输出的内容高质量、不多余'
-                summary = self.call_llm(prompt)
-                _d[1]['summary'] = summary
-                _d[1]['embedding'] = self.embedding_model.encode(summary)
-                _d[1]['branch'] = {}
-
-            if now.day not in self.temporalmemories[now.year]['branch'][now.month]['branch']:
-                self.temporalmemories[now.year]['branch'][now.month]['branch'][now.day] = {'branch':{}}
         
         self.temporalmemories[now.year]['branch'][now.month]['branch'][now.day]['branch'][f'{now.hour}:{now.minute}:{now.second}'] = text
+    
+    def search_temporal_memories(self, query, query_embedding, top_k=5, similarity_threshold=0.5):
+        if not self.temporalmemories:
+            return []
+        
+        time_expressions = self.time_extractor.extract_time(query)
+        if time_expressions:
+            normalize_time = self.time_extractor.normalize_time(time_expressions)
+        else:
+            normalize_time = []
+        print(normalize_time)
+        
+        relevant_memories = []
+        
+        def traverse_temporal_layer(memories_dict, path=""):
+            current_layer_candidates = []
+            
+            for time_key, memory_data in memories_dict.items():
+                current_path = f"{path}-{time_key}" if path else str(time_key)
+  
+                similarity = similarity_threshold
+                if isinstance(memory_data, str):
+                    summary = memory_data
+                elif isinstance(memory_data, dict):
+                    summary = memory_data.get('summary', '')
+
+                    flag = True
+                    for t in normalize_time:
+                        if len(t) == 1:
+                            if current_path == t[0]:
+                                similarity = 1
+                                flag = False
+                        elif len(t) == 2:
+                            if len(current_path) == len(t[0]) and len(current_path) == len(t[1]) and t[0] <= current_path <= t[1]:
+                                similarity = 1
+                                flag = False
+
+                    if flag and 'embedding' in memory_data:
+                        memory_embedding = np.array(memory_data['embedding'])
+                        similarity = np.dot(query_embedding, memory_embedding) / (
+                            np.linalg.norm(query_embedding) * np.linalg.norm(memory_embedding)
+                        )
+                    
+                if similarity >= similarity_threshold:
+                    candidate = {
+                        'type': 'temporal',
+                        'time': current_path,
+                        'similarity': float(similarity),
+                        'summary': summary,
+                        'memory_data': memory_data
+                    }
+                    current_layer_candidates.append(candidate)
+            
+            current_layer_candidates.sort(key=lambda x: x['similarity'], reverse=True)
+            selected_candidates = current_layer_candidates[:top_k]
+            
+            for candidate in selected_candidates:
+                memory_data = candidate['memory_data']
+                
+                if 'branch' in memory_data and memory_data['branch']:
+                    traverse_temporal_layer(
+                        memory_data['branch'], 
+                        candidate['time']
+                    )
+                else:
+                    if candidate['summary']:
+                        _candidate = candidate.copy()
+                        del _candidate['memory_data']
+                        relevant_memories.append(_candidate)
+        
+        traverse_temporal_layer(self.temporalmemories)
+        
+        relevant_memories.sort(key=lambda x: x['similarity'], reverse=True)
+        return relevant_memories[:top_k]
     
     def replace_alias(self, text):
         for entity, alias in self.entity_alias.items():
@@ -169,18 +241,22 @@ class RAGMemory:
         2. **情感导向**：重点记录情感连接、亲密关系和互动模式
         3. **个性特征**：专注于独特的个人特质，而非抽象能力
         4. **关系深度**：优先记录有情感价值的关系，如朋友、恋人、师生等
+        5. **关系提取**：关系是记忆的核心，比实体描述更重要
+        6. **实体提取**：当文本里的实体不在现有实体里时，请优先添加实体
 
         **实体描述标准：**
-        - PERSON: 性格特点、外貌特征、兴趣爱好、职业、说话风格、行为习惯等
-        - PLACE: 对我们有特殊意义的地方，包括氛围、回忆、情感联系
-        - PRODUCT: 喜欢/讨厌的物品，使用习惯，情感价值
-        - CONCEPT: 共同话题、兴趣领域、价值观念
+        - PERSON: 基本特征
+        - PLACE: 基本属性和主要特征
+        - PRODUCT: 类型和基本特点
+        - CONCEPT: 简短定义
 
         **关系类型参考：**
-        - 情感关系：喜欢、爱、关心、想念、依赖、信任
-        - 互动关系：经常聊天、一起游戏、互相帮助、分享秘密
-        - 社交关系：朋友、恋人、同事、室友、网友
-        - 兴趣关系：共同爱好、讨论话题、推荐内容
+        - 情感态度：喜欢、讨厌、关心、信任、依赖
+        - 行为互动：经常聊天、一起做什么、互相帮助
+        - 社交定位：是朋友、恋人、同事、网友
+        - 话题兴趣：讨论什么、分享什么、推荐什么
+        - 时间特征：最近在做什么、计划做什么
+        - 情绪变化：关系变好/变坏、心情影响
 
         **描述示例：**
         ✓ "一个温柔体贴的人，喜欢在聊天时使用可爱的表情，对动漫很有兴趣"
@@ -202,7 +278,7 @@ class RAGMemory:
             "action": "add_entity",
             "entity": "实体名称",
             "type": "实体类型",
-            "description": "像描述真实朋友一样的个性化描述"
+            "description": "基本特征描述"
         }}
         </tool_call>
 
@@ -212,7 +288,7 @@ class RAGMemory:
             "action": "update_entity",
             "entity": "实体名称", 
             "type": "类型",
-            "description": "整合新信息后的完整个性描述"
+            "description": "更新描述"
         }}
         </tool_call>
 
@@ -261,14 +337,12 @@ class RAGMemory:
 
         请分析文本并更新记忆库。
         """
+        prompt = '\n'.join(line[8:] for line in prompt.splitlines())
         
         response = self.call_llm(prompt)
         self.process_tool_calls(response)
 
-    def add_conversation(self, conversation, conversation_id = None):
-        if conversation_id is None:
-            conversation_id = f"conv_{len(self.conversations)}"
-        
+    def add_conversation(self, conversation):
         full_text = ''
         for msg in conversation:
             msg_content = msg['content']
@@ -285,17 +359,8 @@ class RAGMemory:
 
         self.update_temporalmemories(full_text)
         
-        conv_data = {
-            'id': conversation_id,
-            'messages': conversation,
-            'timestamp': datetime.now().isoformat(),
-            'embedding': conv_embedding.tolist()
-        }
-        self.conversations.append(conv_data)
-        self.conversations = self.conversations[-Global.conversations_length:]
-        
         self.extract_entities_and_relationships(full_text, conv_embedding)
-        
+
         self.save_to_file(self.memory_path)
     
     def process_tool_calls(self, response):
@@ -332,12 +397,12 @@ class RAGMemory:
         self.entity_embeddings[entity] = entity_embedding
         
         if not self.graph.has_node(entity):
-            self.graph.add_node(entity,
-                              type=data.get('type', 'unknown'),
-                              description=data.get('description', ''),
-                              first_seen=datetime.now().isoformat(),
-                              conversations=[])
-            print(f"添加实体: {entity} ({data.get('description', '')})")
+            if 'type' in data and 'description' in data:
+                self.graph.add_node(entity,
+                                type=data['type'],
+                                description=data['description'],
+                                first_seen=datetime.now().isoformat())
+                print(f"添加实体: {entity} ({data['description']})")
     
     def tool_update_entity(self, data):
         """更新实体工具"""
@@ -346,11 +411,11 @@ class RAGMemory:
             return
             
         if 'type' in data:
-            self.graph.nodes[entity]['type'] = data.get('type', 'unknown')
+            self.graph.nodes[entity]['type'] = data['type']
         if 'description' in data:
-            self.graph.nodes[entity]['description'] = data.get('description', '')
+            self.graph.nodes[entity]['description'] = data['description']
             
-        print(f"更新实体: {entity} ({data.get('description', '')})")
+            print(f"更新实体: {entity} ({data['description']})")
     
     def tool_add_relationship(self, data):
         """添加关系工具"""
@@ -368,8 +433,7 @@ class RAGMemory:
                 self.graph.add_node(entity,
                                   type='unknown',
                                   description='',
-                                  first_seen=datetime.now().isoformat(),
-                                  conversations=[])
+                                  first_seen=datetime.now().isoformat())
         
         relation_text = f"{source} {relation} {target}"
         relation_embedding = self.embedding_model.encode(relation_text)
@@ -378,7 +442,6 @@ class RAGMemory:
                           relation=relation,
                           confidence=data.get('confidence', 0.5),
                           evidence=data.get('evidence', ''),
-                          conversation_id='tool_generated',
                           embedding=relation_embedding,
                           timestamp=datetime.now().isoformat())
         print(f"添加关系: {source} -> {target} ({relation})")
@@ -434,17 +497,7 @@ class RAGMemory:
             content = response.choices[0].message.content
             return content
         else:
-            while True:
-                payload = {
-                    "model": "deepseek-v3",
-                    "messages": [{'role':'user', 'content':prompt}],
-                    "stream": False
-                }
-                response = requests.post('https://api.pearktrue.cn/api/aichat/', json=payload)
-                response_data = response.json()
-
-                if 'content' in response_data:
-                    return response_data['content']
+            return ''
     
     def semantic_search(self, query, top_k=5, similarity_threshold=0.7):
         """增强的语义搜索，包含关系搜索"""
@@ -452,42 +505,18 @@ class RAGMemory:
         query = query.replace('你', self.assistant_name)
         query = self.replace_alias(query)
         query_embedding = self.embedding_model.encode(query)
-        
-        relevant_conversations = []
 
-        # 搜索对话
-        for conv in self.conversations:
-            conv_embedding = np.array(conv['embedding'])
-            similarity = np.dot(query_embedding, conv_embedding) / (
-                np.linalg.norm(query_embedding) * np.linalg.norm(conv_embedding)
-            )
-            
-            if similarity > similarity_threshold:
-                relevant_conversations.append({
-                    'type': 'conversation',
-                    'id': conv['id'],
-                    'similarity': float(similarity),
-                    'content': conv['messages'],
-                    'timestamp': conv['timestamp']
-                })
-        
-        relevant_conversations.sort(key=lambda x: x['similarity'], reverse=True)
-        relevant_conversations = relevant_conversations[:top_k]
+        relevant_temporal = self.search_temporal_memories(query, query_embedding, top_k, similarity_threshold)
 
         relevant_entities, relevant_relationships = self.find_relevant(query_embedding, top_k, similarity_threshold)
 
-        return relevant_conversations + relevant_entities + relevant_relationships
+        return relevant_temporal + relevant_entities + relevant_relationships
 
     def build_context(self, relevant_info):
         context_parts = []
         
         for info in relevant_info:
-            if info['type'] == 'conversation':
-                conv_text = "\n".join([f"{msg.get('role', '未知')}: {msg.get('content', '')}" 
-                                    for msg in info['content']])
-                context_parts.append(f"对话片段 (相似度: {info['similarity']:.2f}):\n{conv_text}\n"
-                                     f"时间戳: {info.get('timestamp', '无')}")
-            elif info['type'] == 'entity':
+            if info['type'] == 'entity':
                 entity_info = info['info']
                 context_parts.append(f"实体: {info['text']} (相似度: {info['similarity']:.2f})\n"
                                     f"类型: {entity_info.get('type', '未知')}\n"
@@ -496,6 +525,9 @@ class RAGMemory:
                 context_parts.append(f"关系: {info['source']} -> {info['target']} (相似度: {info['similarity']:.2f})\n"
                                     f"关系类型: {info['relation']}\n"
                                     f"置信度: {info['confidence']:.2f}")
+            elif info['type'] == 'temporal':
+                context_parts.append(f"时间记忆: {info['time']} (相似度: {info['similarity']:.2f})\n"
+                                    f"内容: {info['summary']}")
         
         current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return f"当前时间: {current_time}\n\n"+"\n\n".join(context_parts)
@@ -504,7 +536,6 @@ class RAGMemory:
         data = {
             'entity_alias': self.entity_alias,
             'temporalmemories': self.temporalmemories,
-            'conversations': self.conversations,
             'graph_nodes': dict(self.graph.nodes(data=True)),
             'graph_edges': [(u, v, d) for u, v, d in self.graph.edges(data=True)],
             'entity_embeddings': {k: v.tolist() for k, v in self.entity_embeddings.items()},
@@ -523,5 +554,61 @@ class RAGMemory:
         
         self.entity_alias = data['entity_alias']
         self.temporalmemories = data['temporalmemories']
-        self.conversations = data['conversations']
         self.entity_embeddings = {k: np.array(v) for k, v in data['entity_embeddings'].items()}
+
+class TimeExtractor:
+    def __init__(self, parent: RAGMemory):
+        self.parent = parent
+    
+    def extract_time(self, text):
+        """提取文本中的时间表达式"""
+        doc = self.parent.nlp(text)
+        time_expressions = []
+        
+        for ent in doc.ents:
+            if ent.label_ in ["DATE", "TIME"]:
+                time_expressions.append(ent.text)
+        
+        return time_expressions
+    
+    def normalize_time(self, time_expressions):
+        """批量标准化时间表达式"""
+        if not time_expressions:
+            return []
+        
+        prompt = f"""
+        请将以下中文时间表达式按顺序转换为标准化的时间数据格式。
+
+        规则：
+        1. 单个时间点：返回 ["YYYY"] 或 ["YYYY-M"] 或 ["YYYY-M-D"] 格式
+        2. 时间范围：返回 ["YYYY", "YYYY"] 或 ["YYYY-M", "YYYY-M"] 或 ["YYYY-M-D", "YYYY-M-D"] 格式
+        3. 相对时间（如"去年"、"上个月"）：基于当前时间{datetime.today().strftime("%Y年%m月%d日 %A")}
+        4. 按输入顺序返回JSON数组，每个元素对应一个时间表达式的标准化结果
+
+        时间表达式列表：
+        {time_expressions}
+
+        示例：
+        输入：["最近两年", "2024年3月", "上个月15日"]
+        输出：```json
+        [["2022", "2024"], ["2024-3"], ["2024-11-15"]]
+        ```
+
+        请转换：
+        """
+        prompt = '\n'.join(line[8:] for line in prompt.splitlines())
+        
+        result = self.parent.call_llm(prompt)
+
+        try:
+            normalized_list = json.loads(result)
+            return normalized_list
+        except json.JSONDecodeError:
+            json_match = re.search(r'```(?:json)?\s*(.*?)\s*```', result, re.DOTALL)
+            if json_match:
+                try:
+                    normalized_dict = json.loads(json_match.group(1).strip())
+                    return normalized_dict
+                except json.JSONDecodeError:
+                    pass
+            return []

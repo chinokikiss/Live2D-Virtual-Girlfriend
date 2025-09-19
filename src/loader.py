@@ -13,14 +13,15 @@ device = Global.device
 
 class SpeakerVerification:
     def __init__(self):
-        self.verification = pipeline(
-            task='speaker-verification',
-            model='iic/speech_campplus_sv_zh-cn_16k-common',
-            model_revision='v1.0.0',
-            device=device
-        )
-        
-        self._warmup()
+        if Global.your_voice:
+            self.verification = pipeline(
+                task='speaker-verification',
+                model='iic/speech_campplus_sv_zh-cn_16k-common',
+                model_revision='v1.0.0',
+                device=device
+            )
+            
+            self._warmup()
     
     def _warmup(self):
         self.my_voice_emb = self.verification([Global.your_voice], output_emb=True)['embs'][0]

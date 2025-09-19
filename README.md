@@ -28,7 +28,7 @@
 - ✅ **随机动画播放**
 - ✅ **声纹识别**
 - ✅ **唤醒与睡眠机制**
-- 🔄 **长期记忆** - *支持动态添加、修改知识，暂不支持时间点记忆查询、遗忘机制*
+- 🔄 **长期记忆** - *支持动态添加、修改知识图谱、时间点记忆查询，暂不支持遗忘机制*
 - ✅ **屏幕内容识别**
 - ✅ **MCP调用**
 - ✅ **多智能体** - *支持深度联网搜索、电脑自动化操作(GUI、代码执行)*
@@ -186,6 +186,7 @@ python main.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

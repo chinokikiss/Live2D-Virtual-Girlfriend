@@ -30,7 +30,7 @@
 - 🔄 **长期记忆**
 - ✅ **屏幕内容识别**
 - ✅ **MCP调用**
-- ✅ **多智能体**
+- ✅ **多智能体** - 支持深度联网搜索、电脑自动化操作(GUI、代码执行)
 - 🔄 **主动对话**
 - 🔄 **点歌功能**
 - 🔄 **WebLive2D**
@@ -182,6 +182,7 @@ python main.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

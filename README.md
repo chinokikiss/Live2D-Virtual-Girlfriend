@@ -56,37 +56,28 @@
 - **Anaconda** 包管理器
 - **CUDA** 支持
 
-## 安装步骤
+## 部署步骤
 
 ### 1. 环境准备
 
-**安装Anaconda并创建Python虚拟环境。**
-
-### 2. 安装PyTorch
-
-**配置conda镜像源后执行：**
+**安装Anaconda并创建Python虚拟环境**
 ```bash
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+conda create -n live2d_chat python=3.11
+conda activate live2d_chat
 ```
 
-### 3. 安装依赖
+**安装所有依赖**
 ```bash
-pip install -r requirements.txt
-```
-*建议配置pip镜像源以提高下载速度。*
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia # 建议配置conda镜像源
+pip install -r requirements.txt # 建议配置pip镜像源
+pip install modelscope[audio] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html
 
-### 4. 下载NLP模型
-```bash
+# 以下建议开VPN下载
 python -m spacy download zh_core_web_sm
-```
-
-### 5. 下载embedding模型
-```bash
 python download.py
 ```
-*建议开启VPN下载*
 
-### 6. 配置文件设置
+### 2. 配置文件设置
 
 修改`config.toml`文件中的以下配置：
 
@@ -108,11 +99,11 @@ python download.py
 - `api_key`：辅助API密钥
 - `chat_model`：辅助聊天模型
 
-### 7. 启动程序
-
-运行`debug.bat`或执行`python main.py`
-
-首次启动将自动下载必要的模型文件，请耐心等待。
+### 3. 启动程序
+```bash
+python main.py
+```
+*首次启动将自动下载必要的模型文件*
 
 ## 角色卡制作
 
@@ -191,6 +182,7 @@ python download.py
 <a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
 </a>
+
 
 
 

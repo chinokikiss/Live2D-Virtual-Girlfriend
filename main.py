@@ -225,7 +225,7 @@ class Agent:
                 json.dump(temp_data, f, ensure_ascii=False)
                 temp_file = f.name
 
-            os.system(f'start /min cmd /c python {py} "{temp_file}"')
+            os.system(f'start /min cmd /c {sys.executable} {py} "{temp_file}"')
 
             while True:
                 if agent_id in Global.Agent_return:
@@ -460,3 +460,4 @@ if __name__ == '__main__':
 
 
     sys.exit(app.exec())
+

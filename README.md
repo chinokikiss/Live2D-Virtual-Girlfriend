@@ -1,0 +1,217 @@
+<div align="center">
+
+# 💕 Live2D Virtual Girlfriend
+
+<img src="temp\avatar.png" alt="Virtual Girlfriend Avatar" width="200" height="200" style="border-radius: 50%; margin: 20px 0;"/>
+
+*基于Live2D驱动的虚拟女友项目*
+
+**提供实时对话、触摸交互、情绪系统等完整的虚拟伴侣体验**
+
+[![GitHub Stars](https://img.shields.io/github/stars/chinokikiss/Live2D-Virtual-Girlfriend?style=flat-square)](https://github.com/chinokikiss/Live2D-Virtual-Girlfriend)
+[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg?style=flat-square)](LICENSE)
+[![Python Version](https://img.shields.io/badge/python-3.10--3.11-blue.svg?style=flat-square)](https://python.org)
+
+---
+
+</div>
+
+</div>
+
+## 功能特性
+- ✅ **实时语音对话**
+- ✅ **触摸交互**
+- ✅ **实时字幕显示**
+- ✅ **情绪表达**
+- ✅ **表情播放**
+- ✅ **语音打断**
+- ✅ **随机动画播放**
+- ✅ **声纹识别**
+- ✅ **唤醒与睡眠机制**
+- ✅ **自由移动缩放**
+- 🔄 **长期记忆** - *支持动态添加、修改知识图谱、时间点记忆查询，暂不支持遗忘机制*
+- ✅ **屏幕内容识别**
+- ✅ **MCP调用** - *更便捷的工具调用*
+- ✅ **深度联网搜索** - *自动爬虫，支持游览器操作，网络资源下载*
+- ✅ **屏幕控制** - *模拟鼠标、键盘输入，支持实时解说*
+- ✅ **代码执行** - *有控制电脑的权限*
+- 🔄 **主动对话**
+- 🔄 **点歌功能** - *网易云，UVR5分离人声，RVC翻唱*
+- 🔄 **网页对话** - *支持手机游览器直接对话、拍照识别*
+- 🔄 **VTuber直播**
+- 🔄 **UI界面开发**
+- ❌ **自动思考** - *根据任务难度判断是否深度思考*
+- ❌ **动作播放**
+- ❌ **游戏解说**
+- ❌ **自主玩游戏**
+- ✅ **整合包**
+- ❌ **记忆可视化管理**
+- ❌ **意图识别**
+
+</div>
+
+## 性能表现
+
+| 项目 | 规格 |
+|------|------|
+| **显存需求** | 3-4GB（包含GPTSoVits） |
+| **测试环境** | i5 13代 + RTX 3050 笔记本 |
+| **首次响应** | 1-2秒 (豆包1.6 flash 0.5-0.7秒) |
+
+## 环境要求
+
+- **Python** < 3.12
+- **Anaconda** 包管理器
+- **CUDA** 支持
+
+## 整合包
+**主程序包**: [Live2D-Virtual-Girlfriend-main.zip](https://pan.baidu.com/s/1Q5Zyaw6S_Ho7AiyowBBOUA?pwd=rxa9)  
+
+**语音合成**: [GPT-SoVITS](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)
+
+## 部署步骤
+
+### 1. 环境准备
+
+**创建虚拟环境**
+```bash
+conda create -n live2d_chat python=3.11
+conda activate live2d_chat
+```
+
+**安装依赖**
+```bash
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia # 建议配置conda镜像源
+pip install -r requirements.txt # 建议配置pip镜像源
+pip install modelscope[audio] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html
+
+# 以下建议开VPN下载
+python -m spacy download zh_core_web_sm
+python download.py
+```
+
+### 2. 配置文件设置
+
+修改`config.toml`文件中的以下配置：
+
+#### 用户角色配置
+在`user_name`字段填入自己要扮演的角色名，这将影响对话中的身份设定。
+
+#### 声纹识别配置
+录制个人语音样本，将音频文件路径填入`your_voice`字段。
+
+#### API配置
+在`["required"]`中填入OpenAI格式的API信息：
+- `base_url`：API服务地址
+- `api_key`：API密钥
+- `chat_model`：使用的聊天模型
+
+#### 辅助模型配置
+在`["auxiliary"]`中填入低价的大模型API信息，用于辅助生成内容：
+- `base_url`：辅助API服务地址
+- `api_key`：辅助API密钥
+- `chat_model`：辅助聊天模型
+
+### 3. 启动程序
+```bash
+python main.py
+```
+*首次启动将自动下载必要的模型文件*
+
+## 角色卡制作
+
+### 目录结构
+
+以`Character/llny`为例：
+```
+- mianfeimox/：Live2D模型文件夹
+- exp.json：表情配置文件
+- llny.json：角色配置文件
+- 人设.txt：角色人设描述
+- 日配.ogg：参考语音文件
+- memory：记忆文件(不用一起复制，会自动生成)
+```
+### 表情配置文件
+
+`exp.json`定义了Live2D模型的表情映射关系：
+```json
+{
+    "- -": "面无表情",
+    "阿尼亚": "双手比心的表情",
+    "比心": "双手比心的表情",
+    "荷包蛋": "两个圆圆的眼睛",
+    "口罩": "戴着口罩的表情",
+    "哭": "哭泣的表情",
+    "脸黑": "脸色阴沉的表情",
+    "脸红": "脸颊通红的表情",
+    "生气": "愤怒的表情",
+    "吐舌": "吐出舌头的表情",
+    "外套": "穿着外套的表情",
+    "星星": "眼睛发出星星的表情",
+    "眼镜": "戴着眼镜的表情"
+}
+```
+### 角色配置文件
+
+`llny.json`包含角色的完整配置信息：
+```json
+{
+    "live2d_model": "mianfeimox\\llny.model3.json",
+    "ref_audio": "日配.ogg",
+    "prompt_text": "ほら、今日も頑張って！私が手伝ってあげるから！",
+    "prompt_lang": "ja",
+    "system_prompt": "人设.txt",
+    "exp": "exp.json",
+    "max_rms_scale": 8000,
+    "ttf_rgb": [255, 182, 193],
+    "subtitle_speed": 0.13,
+    "speed_factor": 1.0,
+    "wake_word": ["在吗"],
+    "end_word": ["再见"]
+}
+```
+#### 配置参数说明
+
+- `live2d_model`：Live2D模型文件相对路径
+- `ref_audio`：参考音频文件相对路径
+- `prompt_text`：参考音频对应文本
+- `prompt_lang`：文本语言（zh中文/en英文/ja日文）
+- `system_prompt`：人设文件相对路径
+- `exp`：表情配置文件相对路径
+- `max_rms_scale`：口型同步幅度（数值越大幅度越小）
+- `ttf_rgb`：字幕颜色RGB值
+- `subtitle_speed`：字幕生成速度（数值越小速度越快）
+- `speed_factor`：语音生成语速
+- `wake_word`：唤醒词列表
+- `end_word`：休眠词列表
+
+## 我的感想
+*暂时没感想...*
+
+## 贡献者
+
+感谢所有为这个项目做出贡献的开发者！
+
+<a href="https://github.com/chinokikiss/Live2D-Virtual-Girlfriend/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=chinokikiss/Live2D-Virtual-Girlfriend" />
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

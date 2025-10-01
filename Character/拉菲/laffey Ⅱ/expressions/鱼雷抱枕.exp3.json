@@ -1,0 +1,15 @@
+{
+    "Type": "Live2D Expression",
+    "Parameters": [
+        {
+            "Id": "ParamtorpedoArm",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamtorpedoArm0",
+            "Value": 1.0,
+            "Blend": "Add"
+        }
+    ]
+}

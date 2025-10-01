@@ -1,0 +1,99 @@
+# 配置文件
+user_name = '' # 必填 填你要扮演的角色名
+character_toml = 'Character\拉菲\拉菲.toml' # 角色卡路径
+
+load_model = true # 是否加载模型启动
+
+device = 'cuda' # 'cuda'即GPU运行模型;'cpu'字面意思;如果指定显卡，可以是'cuda:1'
+
+context_length = 10000 # 上下文长度
+save_memory_steps = 4 # 几条对话进行一次记忆保存
+embedding = "BAAI/bge-small-zh-v1.5" # 所使用的本地向量模型 HuggingFace 更改此项可能会导致已有的记忆文件不可用，需删除原先的记忆文件
+memory_entity_top_k = 5 # 实体查询返回最大长度
+memory_entity_similarity_threshold = 0.1 # 实体查询相似度阈值
+memory_relationships_top_k = 10 # 关系查询返回最大长度
+memory_relationships_similarity_threshold = 0.5 # 关系查询相似度阈值
+memory_temporal_top_k = 5 # 历史对话查询返回最大长度
+memory_temporal_similarity_threshold = 0.5 # 历史对话查询相似度阈值
+
+# 小牛翻译 选填 默认用内置免费api
+niutrans_app_id = ''
+niutrans_api_key = ''
+
+# 百度翻译 选填 默认用内置免费api
+baidu_api_key = ''
+baidu_secret_key = ''
+
+your_voices = [] # 声纹识别参考音频 这里输入你的人声音频路径 可输入多个参考音频增加识别准确度
+other_voices = {} # 暂不支持
+verifier_threshold = 0.2 # 声纹识别阈值
+aggressiveness = 3 # VAD检测人声敏感度 1最敏感 3最不敏感
+shot_word = ['看', '屏幕', '画面', '图'] # 屏幕识别触发关键词 非多模态模型无法使用
+hot_word = "{'蔡徐坤':[]}" # 热词替换 将ASR识别不出来的单词进行替换
+
+gsv_api2 = "http://127.0.0.1:9880/tts" # GPTSovits apiv2的接口
+kokoro_api = "http://127.0.0.1:8880/v1" # Kokoro-FastAPI的接口
+rvc_url = "http://127.0.0.1:7897" # RVC WebUI的网址
+cut_length = 5 # TTS文本最小切片长度 合适的长度可以有效降低首个响应时间，不宜太小或太大
+cut_sleep = 0.5 # 切片与切片之间音频播放的停顿时间
+
+input_box = true # 是否启用输入框
+always_screenshot = false # 是否每次对话都识别屏幕
+initiative_wait_range = [1, 10] # 主动对话间隔范围(单位为分钟)，赋值'none'字符串即关闭主动对话
+exp_fadeout = 3 # 表情消失时间
+
+# 对话模型api 必填
+["required"]
+base_url = ''
+api_key = ''
+chat_model = ''
+temperature = 0.7
+top_p = 0.8
+max_tokens = 16384
+max_pixels = 501760
+
+# 辅助模型api 必填 要求支持调用工具、价格低、能力强
+["auxiliary"]
+base_url = ''
+api_key = ''
+chat_model = ''
+
+# 选填 想用深度联网搜索、屏幕控制、代码执行的兄弟，这里填入你的魔搭社区令牌
+["modelscope"]
+base_url = 'https://api-inference.modelscope.cn/v1/'
+api_key = ''
+
+# www.bing.com的cookie，如果失效了请自行替换
+www_bing_cookie = ""
+
+# cn.bing.com的cookie，如果失效了请自行替换
+cn_bing_cookie = ""
+
+search_max_context = 30000 # 网页返回的最大文本长度
+search_pages = 2 # 搜索引擎返回页数
+headless = false # 游览器无头模式（即Agent调用游览器时，是否不弹窗）
+has_proxy = false # 电脑是否开启了代理（vpn）
+
+agent_event = true # 屏幕控制时，是否解说
+
+port = 9998 # 端口（如没有占用端口，则不要改动）
+
+# 网页版对话 目前对各个游览器的兼容性并不好，建议用QQ游览器访问
+["weblive2d"]
+enable = true # 是否启用网页版对话
+
+volume = 2.0 # 音量
+max_rms_scale = 0.00004 # 口型同步参数（数值越大同步幅度越小）
+subtitle_duration = 5000 # 字幕保留时间
+
+background = 'assets/bg/bg.jpg'
+background_width = 1920
+background_height = 1080
+
+port = 9999 # 端口（如没有占用端口，则不要改动）
+
+# 翻唱
+["sing"]
+volume = 0.7 # 音量
+max_rms_scale = 0.2 # 口型同步参数（数值越大同步幅度越小）
+pitch_threshold = 260 # 用于比较源音频的平均基频，判断男女声

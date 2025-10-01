@@ -1,0 +1,47 @@
+# 角色配置文件
+name = "拉菲" # 角色名称
+
+win_width = 800 # 窗口宽度
+win_height = 1400 # 窗口高度
+
+# WebLive2d设置
+web_x = -190 # WebLive2d X轴偏移量
+web_y = -80 # WebLive2d Y轴偏移量
+web_scale = 0.3 # WebLive2d 缩放比例
+
+live2d_model = "laffey Ⅱ\\Laffey Ⅱ.model3.json" # Live2D模型文件路径
+system_prompt = "人设.txt" # 人设文件路径
+exp = "exp.json" # 表情配置文件路径
+
+# 音频设置
+max_rms_scale = 4500 # 口型同步参数（数值越大同步幅度越小）
+ref_audio = "日配.mp3" # 参考音频文件路径
+
+# 显示设置
+ttf_rgb = [135, 206, 235] # 字幕颜色RGB值
+bubble_height = -600 # 文本气泡高度偏移
+subtitle_speed = 0.18 # 字幕生成速度
+
+# 语音合成设置（GPT-SoVITS）
+prompt_text = "私がこの体じゃなくなってもまだ、見てくれる。" # 参考语音文本
+prompt_lang = "ja" # 参考语音语言
+text_lang = "zh" # 输出语音语言
+speed_factor = 1.0 # 语速
+
+watermark = "Paramtanchuang" # 去除水印id
+
+# RVC翻唱设置
+rvc_model = "guanguanV1.pth"
+rvc_index = ""
+
+# 表情动画配置
+["Exp"]
+mixanimator_wait_range = [5, 10] # MixAnimator播放等待时间范围 赋值'none'字符串即关闭MixAnimator
+mixanimator_weight = [1, 1, 1, 1, 0] # 各随机动画的播放权重
+mixanimator_max_sample = 2 # 动画最大组合数量
+
+# 身体动画配置
+["Body"]
+mixanimator_wait_range = [0, 0] # MixAnimator播放等待时间范围 赋值'none'字符串即关闭MixAnimator
+mixanimator_weight = [4, 4, 4, 4, 0, 0, 0, 0] # 各随机动画的播放权重
+mixanimator_max_sample = 3 # 动画最大组合数量

@@ -1,0 +1,31 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "sing_song",
+            "description": "根据关键词演唱匹配的歌曲。调用时需要等待歌曲合成。适用场景：当用户想要听特定歌曲、指定歌手的歌曲，或想要听歌放松、体验AI歌声。注意：歌曲生成需要一定处理时间，请耐心等待。",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "keyword": {
+                        "type": "string",
+                        "description": "歌名或歌名+歌手的关键词，系统会自动匹配最接近的歌曲。"
+                    }
+                },
+                "required": ["keyword"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "other_tool",
+            "description": "其他工具，功能只有：",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        }
+    }
+]

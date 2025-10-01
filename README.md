@@ -2,7 +2,7 @@
 
 # 💕 Live2D Virtual Girlfriend
 
-<img src="temp\avatar.png" alt="Virtual Girlfriend Avatar" width="200" height="200" style="border-radius: 50%; margin: 20px 0;"/>
+<img src="temp\avatar.gif" alt="Virtual Girlfriend Avatar" width="200" height="200" style="border-radius: 50%; margin: 20px 0;"/>
 
 *基于Live2D驱动的虚拟女友项目*
 
@@ -130,6 +130,21 @@ python download_vpn.py
 python main.py
 ```
 
+## 语音合成优化
+在 *GPT-SoVITS-main\api_v2.py*、*Kokoro-FastAPI-master\api\src\main.py* 中插入以下代码：
+```python
+import psutil
+import os
+
+def set_high_priority():
+    p = psutil.Process(os.getpid())
+    try:
+        p.nice(psutil.HIGH_PRIORITY_CLASS)
+        print("已将进程优先级设为 High")
+    except psutil.AccessDenied:
+        print("权限不足，无法修改优先级（请用管理员运行）")
+set_high_priority()
+```
 
 ## 我的感想
 *暂时没感想...*
@@ -138,3 +153,4 @@ python main.py
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+

@@ -2,7 +2,7 @@
 
 # 💕 Live2D Virtual Girlfriend
 
-<img src="assets\avatar.gif" alt="Virtual Girlfriend Avatar" width="200" height="200" style="border-radius: 50%; margin: 20px 0;"/>
+<img src="assets\avatar.gif" alt="Virtual Girlfriend Avatar" width="360" height="487" style="border-radius: 50%; margin: 20px 0;"/>
 
 *基于Live2D驱动的虚拟女友项目*
 
@@ -153,5 +153,6 @@ set_high_priority()
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+
 
 

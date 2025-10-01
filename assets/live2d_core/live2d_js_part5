@@ -1,4 +1,0 @@
-);  // 模型大小,更换模型后可能需要调整
-const bb=r=>{r=Math.max(0,Math.min(1,r)),_i.internalModel.coreModel.setParameterValueById("ParamMouthOpenY",r)};setInterval(()=>{q0.ajax({type:"GET",url:"/api/get_mouth_y",dataType:"json",async:!0,success(r){bb(parseFloat(r.y))}})},100);
-const canvasElement = document.getElementById("canvas2");
-canvasElement.style.backgroundColor = 'transparent';

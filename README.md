@@ -11,6 +11,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/chinokikiss/Live2D-Virtual-Girlfriend?style=flat-square)](https://github.com/chinokikiss/Live2D-Virtual-Girlfriend)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg?style=flat-square)](LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.10--3.11-blue.svg?style=flat-square)](https://python.org)
+![QQ群](https://img.shields.io/badge/QQ群-768397399-brightgreen?logo=tencent-qq&logoColor=white)
 
 ---
 
@@ -149,6 +150,44 @@ def set_high_priority():
 set_high_priority()
 ```
 
+## mcp_configs.json 配置指南
+
+### 概述
+
+`mcp_configs.json` 是用于配置 MCP (Model Context Protocol) 服务的配置文件。该文件包含一个 JSON 数组，用于定义多个 MCP 服务的连接配置。
+
+### 文件结构
+
+配置文件采用 JSON 格式，根级别是一个数组，包含多个服务配置对象。
+```json
+[
+  {
+    "name": "服务名称",
+    "type": "通信模式",
+    "target": "目标路径或地址"
+  }
+]
+```
+
+### 配置参数说明
+
+#### name
+- **类型**: 字符串
+- **描述**: MCP 服务的自定义名称
+
+#### type
+- **类型**: 字符串
+- **可选值**: 
+  - `"stdio"` - 标准输入输出通信模式
+  - `"sse"` - 服务器发送事件通信模式
+- **描述**: 指定与 MCP 服务通信的协议类型
+
+#### target
+- **类型**: 字符串
+- **描述**: 根据通信类型指定不同的目标
+  - 当 `type` 为 `"stdio"` 时：指定服务器脚本文件路径（.py 或 .js 文件）
+  - 当 `type` 为 `"sse"` 时：指定 SSE 服务的网址
+
 ## 我的感想
 *暂时没感想...*
 
@@ -156,6 +195,7 @@ set_high_priority()
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+
 
 
 

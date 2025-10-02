@@ -67,7 +67,7 @@
 - **CUDA** 支持
 
 
-## 🚀 快速开始
+## 🚀 整合包
 
 ### 📦 核心组件
 **主程序包** - [🔗Live2D-Virtual-Girlfriend-main.zip](https://modelscope.cn/models/chinokiki/chinokiki/file/view/master/Live2D-Virtual-Girlfriend.zip)
@@ -153,6 +153,7 @@ set_high_priority()
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+
 
 
 

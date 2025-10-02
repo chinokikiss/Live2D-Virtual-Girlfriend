@@ -16,7 +16,7 @@ class SpeakerVerification:
         if Global.your_voices:
             self.verification = pipeline(
                 task='speaker-verification',
-                model='models\iic\speech_campplus_sv_zh-cn_16k-common',
+                model='iic/speech_campplus_sv_zh-cn_16k-common',
                 model_revision='v1.0.0',
                 device=device
             )
@@ -39,7 +39,7 @@ class SenseVoice:
     def __init__(self):
         self.model = pipeline(
             task=Tasks.auto_speech_recognition,
-            model='models\iic\SenseVoiceSmall',
+            model='iic/SenseVoiceSmall',
             model_revision="master",
             device=device,
             disable_update=True

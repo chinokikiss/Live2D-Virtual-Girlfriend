@@ -69,7 +69,7 @@
 - **Python** < 3.12
 - **Anaconda** 包管理器
 - **CUDA Toolkit**
-
+- **Microsoft Visual C++**
 
 ## 🚀 部署导航
 
@@ -195,6 +195,7 @@ set_high_priority()
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+
 
 
 

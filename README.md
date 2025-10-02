@@ -70,7 +70,7 @@
 ## 🚀 快速开始
 
 ### 📦 核心组件
-**主程序包** - [🔗Live2D-Virtual-Girlfriend-main.zip](https://modelscope.cn/models/chinokiki/chinokiki/resolve/master/Live2D-Virtual-Girlfriend.zip)
+**主程序包** - [🔗Live2D-Virtual-Girlfriend-main.zip](https://modelscope.cn/models/chinokiki/chinokiki/file/view/master/Live2D-Virtual-Girlfriend.zip)
 
 ### 🎵 语音合成
 **GPT-SoVITS** - [🔗整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)

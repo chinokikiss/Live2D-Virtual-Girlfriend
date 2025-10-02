@@ -18,6 +18,9 @@
 
 </div>
 
+## 演示视频
+
+📺 [观看演示视频](https://www.bilibili.com/video/BV169HPzEEGX)
 
 ## 功能特性
 - ✅ **实时语音对话**
@@ -36,7 +39,7 @@
 - ✅ **代码执行** - *代码能做到什么，它就能做到什么*
 - ✅ **主动对话** - *计时器触发，暂时不能感知环境*
 - ✅ **点歌功能** - *网易云，UVR5分离人声，RVC翻唱*
-- ✅ **网页对话** - *支持手机游览器直接对话、字幕显示、拍照识别*
+- ✅ **网页对话** - *支持手机游览器直接对话、字幕显示、语音打断、拍照识别*
 - 🔄 **VTuber直播**
 - 🔄 **UI界面开发**
 - ❌ **EasyVtuber**
@@ -67,10 +70,10 @@
 - **CUDA** 支持
 
 
-## 🚀 整合包
+## 🚀 部署导航
 
-### 📦 核心组件
-**主程序包** - [🔗Live2D-Virtual-Girlfriend-main.zip](https://modelscope.cn/models/chinokiki/chinokiki/file/view/master/Live2D-Virtual-Girlfriend.zip)
+### 📦 整合包
+**高速下载** - [🔗Live2D-Virtual-Girlfriend-main.zip](https://modelscope.cn/models/chinokiki/chinokikisss/resolve/master/Live2D-Virtual-Girlfriend-main.zip)
 
 ### 🎵 语音合成
 **GPT-SoVITS** - [🔗整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)
@@ -153,6 +156,7 @@ set_high_priority()
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+
 
 
 

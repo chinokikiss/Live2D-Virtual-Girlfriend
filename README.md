@@ -77,6 +77,7 @@
 
 ### 📦 本项目的整合包
 **高速下载1** - [🔗非RTX50系](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-main.zip)
+
 **高速下载2** - [🔗RTX50系](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-nvidia50.zip)
 
 ### 🎵 语音合成
@@ -198,6 +199,7 @@ set_high_priority()
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+
 
 
 

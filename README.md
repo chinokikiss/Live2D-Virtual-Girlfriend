@@ -43,6 +43,8 @@
 - ✅ **网页对话** - *支持手机游览器直接对话、字幕显示、语音打断、拍照识别*
 - 🔄 **VTuber直播**
 - 🔄 **UI界面开发**
+- 🔄 **ONNX加速** - *目前实现了SenseVoiceSmall、speech_campplus_sv_zh-cn_16k-common 转onnx，正在尝试GPT_SoVITS v2proplus 转onnx*
+- ❌ **纯API版本**
 - ❌ **EasyVtuber**
 - ❌ **角色卡社区**
 - ❌ **自动思考** - *根据任务难度判断是否深度思考*
@@ -195,6 +197,7 @@ set_high_priority()
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+
 
 
 

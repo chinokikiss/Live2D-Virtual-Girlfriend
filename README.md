@@ -76,7 +76,7 @@
 ## 🚀 部署导航
 
 ### 📦 整合包
-**高速下载** - [🔗Live2D-Virtual-Girlfriend-main.zip](https://modelscope.cn/models/chinokiki/chinokikisss/resolve/master/Live2D-Virtual-Girlfriend-main.zip)
+**高速下载** - *整合包正在维护中*
 
 ### 🎵 语音合成
 **GPT-SoVITS** - [🔗整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)
@@ -197,6 +197,7 @@ set_high_priority()
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+
 
 
 

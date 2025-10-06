@@ -45,8 +45,8 @@
 - 🔄 **UI界面开发**
 - 🔄 **ONNX加速** - *目前实现了SenseVoiceSmall、speech_campplus_sv_zh-cn_16k-common 转onnx，准备将GPT_SoVITS v2proplus 转onnx*
 - 🔄 **AutoAgent** - *更加智能的智能体团队*
-- ❌ **纯API版本**
-- ❌ **EasyVtuber**
+- 🔄 **纯API版本**
+- 🔄 **EasyVtuber**
 - ❌ **角色卡社区**
 - ❌ **动作播放**
 - ❌ **游戏解说**
@@ -197,6 +197,7 @@ set_high_priority()
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+
 
 
 

@@ -76,9 +76,9 @@
 ## 🚀 部署导航
 
 ### 📦 本项目的整合包
-**高速下载1** - [🔗非RTX50系](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-main.zip)
+**高速下载1** - [🔗非50系NVIDIA显卡v1.0](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-v1.0.zip)
 
-**高速下载2** - [🔗RTX50系](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-nvidia50.zip)
+**高速下载2** - [🔗50系NVIDIA显卡v1.0](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-nvidia50.zip)
 
 ### 🎵 语音合成
 **GPT-SoVITS** - [🔗整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)
@@ -227,7 +227,8 @@ v4:
   {
     "name": "服务名称",
     "type": "通信模式",
-    "target": "目标路径或地址"
+    "target": "目标路径或地址",
+    "feature": "服务描述"
   }
 ]
 ```
@@ -258,6 +259,7 @@ v4:
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+
 
 
 

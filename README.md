@@ -76,11 +76,13 @@
 ## 🚀 部署导航
 
 ### 📦 本项目的整合包
-**高速下载1** - [🔗非50系NVIDIA显卡v1.1](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-v1.1.zip)
+**高速下载1** - [🔗非50系NVIDIA显卡v1.11](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-v1.11.zip)
 
-**高速下载2** - [🔗非50系NVIDIA显卡v1.0](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-v1.0.zip)
+**高速下载2** - [🔗50系NVIDIA显卡v1.11](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-v1.11-nvidia50.zip)
 
-**高速下载3** - [🔗50系NVIDIA显卡v1.0](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-v1.0-nvidia50.zip)
+**高速下载3** - [🔗非50系NVIDIA显卡v1.0](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-v1.0.zip)
+
+**高速下载4** - [🔗50系NVIDIA显卡v1.0](https://modelscope.cn/models/chinokiki/chinokiki666/resolve/master/Live2D-Virtual-Girlfriend-v1.0-nvidia50.zip)
 
 ### 🎵 语音合成
 **GPT-SoVITS** - [🔗整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)
@@ -261,6 +263,7 @@ v4:
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=chinokikiss/Live2D-Virtual-Girlfriend&type=Date)](https://star-history.com/#chinokikiss/Live2D-Virtual-Girlfriend&Date)
+
 
 
 
